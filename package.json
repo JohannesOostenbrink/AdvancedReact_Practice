@@ -1,5 +1,5 @@
 {
-  "name": "m1l4-04-solution-create-a-light-dark-theme-switcher",
+  "name": "m2l1-04-exercise-managing-state-within-a-component",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,12 +16,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

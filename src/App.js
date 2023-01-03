@@ -250,7 +250,7 @@
 //   }
   
 //   export default Root;
-
+import React from "react";
 import { useState } from "react";
 
 export default function App() {
@@ -265,6 +265,9 @@ export default function App() {
   );
 
   function spendGiftCard() {
+    setGiftCard(prevState => {
+      return{...prevState, text: "Your coupon have been used up", valid: false, instructions: "Please visit our restaurant to renew your gift card."  }
+    })
 
   }
 
