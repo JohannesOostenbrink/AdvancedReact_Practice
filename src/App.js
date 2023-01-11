@@ -250,49 +250,81 @@
 //   }
   
 //   export default Root;
+// import React from "react";
+// import { useState } from "react";
+
+// export default function App() {
+//   const [giftCard, setGiftCard] = useState(
+//     {
+//         firstName: "Jennifer",
+//         lastName: "Smith",
+//         text: "Free dinner for 4 guests",
+//         valid: true,
+//         instructions: "To use your coupon, click the button below.",
+//     }
+//   );
+
+//   function spendGiftCard() {
+//     setGiftCard(prevState => {
+//       return{...prevState, text: "Your coupon have been used up", valid: false, instructions: "Please visit our restaurant to renew your gift card."  }
+//     })
+
+//   }
+
+//   return (
+//     <div style={{padding: '40px'}}>
+//       <h1>
+//         Gift Card Page
+//       </h1>
+//       <h2>
+//         Customer: {giftCard.firstName} {giftCard.lastName}
+//       </h2>
+//       <h3>
+//         {giftCard.text}
+//       </h3>
+//       <p>
+//         {giftCard.instructions}
+//       </p>
+//       {
+//         giftCard.valid && (
+//           <button onClick={spendGiftCard}>
+//             Spend Gift Card
+//           </button>
+//                   )
+//                 }
+//               </div>
+//             );
+//           }
+
+
+// Practice Fetching Data With UseEffect Hook
+
 import React from "react";
-import { useState } from "react";
 
-export default function App() {
-  const [giftCard, setGiftCard] = useState(
-    {
-        firstName: "Jennifer",
-        lastName: "Smith",
-        text: "Free dinner for 4 guests",
-        valid: true,
-        instructions: "To use your coupon, click the button below.",
-    }
+function App() {
+  const [user, setUser] = React.useState([]);
+
+  const fetchData = () => {
+    fetch(`"https://randomuser.me/api/?results=1"`)
+        .then((response) => response.json())
+        .then((user) => setUser(user));
+
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
+  return Object.keys(user).length > 0 ? (
+    <div style={{padding: "40px"}}>
+      <h1>Customer data</h1>
+      <h2>`Name: {user.results[0].name.first}`</h2>
+      <img src={user.results[0].picture.large} alt=''/>
+
+    </div>
+  ) : (
+    <h1>Data pending...</h1>
   );
+}
 
-  function spendGiftCard() {
-    setGiftCard(prevState => {
-      return{...prevState, text: "Your coupon have been used up", valid: false, instructions: "Please visit our restaurant to renew your gift card."  }
-    })
-
-  }
-
-  return (
-    <div style={{padding: '40px'}}>
-      <h1>
-        Gift Card Page
-      </h1>
-      <h2>
-        Customer: {giftCard.firstName} {giftCard.lastName}
-      </h2>
-      <h3>
-        {giftCard.text}
-      </h3>
-      <p>
-        {giftCard.instructions}
-      </p>
-      {
-        giftCard.valid && (
-          <button onClick={spendGiftCard}>
-            Spend Gift Card
-          </button>
-                  )
-                }
-              </div>
-            );
-          }
-          
+export default App;
